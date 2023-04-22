@@ -1,0 +1,43 @@
+import os
+
+def add_note():
+    """
+    Add a note to the notebook.
+    """
+    note = input("Enter your note: ")
+    with open("notes.txt", "a") as f:
+        f.write(note + "\n")
+    print("Note added successfully!")
+
+def view_notes():
+    """
+    View all the notes in the notebook.
+    """
+    if not os.path.exists("notes.txt"):
+        print("No notes found.")
+        return
+
+    with open("notes.txt", "r") as f:
+        notes = f.read()
+
+    print(notes)
+
+def main():
+    while True:
+        print("1. Add a note")
+        print("2. View all notes")
+        print("3. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_note()
+        elif choice == "2":
+            view_notes()
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
